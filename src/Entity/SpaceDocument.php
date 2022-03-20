@@ -26,6 +26,7 @@ class SpaceDocument
 
     /**
      * @ORM\OneToMany(targetEntity=Document::class, mappedBy="spaceDocument", orphanRemoval=true, cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
      */
     private $documents;
 

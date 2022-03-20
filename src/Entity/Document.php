@@ -19,12 +19,13 @@ class Document
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $name;
 
     /**
      * @ORM\ManyToOne(targetEntity=SpaceDocument::class, inversedBy="documents")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $spaceDocument;
 

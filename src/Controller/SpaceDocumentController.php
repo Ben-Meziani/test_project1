@@ -36,7 +36,7 @@ class SpaceDocumentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            self::uploadImage($form, $spaceDocument);
+            self::uploadDocument($form, $spaceDocument);
             $spaceDocumentRepository->add($spaceDocument);
             return $this->redirectToRoute('app_space_document_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -76,19 +76,20 @@ class SpaceDocumentController extends AbstractController
         ]);
     }
 
-    public function uploadImage($form, $article)
+    public function uploadDocument($form, $spaceDocument)
     {
-        $images = $form->get('documents')->getData();
-        foreach($images as $image){
-            $file = md5(uniqid()).'.'.$image->guessExtension();
-            $image->move(
+        $documents = $form->get('documents')->getData();
+        foreach($documents as $document){
+            $file = md5(uniqid()).'.'.$document->guessExtension();
+            $document->move(
                 $this->getParameter('documents_directory'),
                 $file
             );
             
-            $img = new Document();
-            $img->setName($file);
-            $article->addDocument($img);
+            $doc = new Document();
+            $doc->setName($file);
+            $spaceDocument->addDocument($doc);
+            // dd($doc);
         }
     }
 
