@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SpaceDocument index{% endblock %}
+
+{% block body %}
+    <h1>SpaceDocument index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for space_document in space_documents %}
+            <tr>
+                <td>{{ space_document.id }}</td>
+                <td>{{ space_document.name }}</td>
+                <td>
+                    <a href="{{ path('app_space_document_show', {'id': space_document.id}) }}">show</a>
+                    <a href="{{ path('app_space_document_edit', {'id': space_document.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_space_document_new') }}">Create new</a>
+{% endblock %}

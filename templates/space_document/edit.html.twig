@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit SpaceDocument{% endblock %}
+
+{% block body %}
+    <h1>Edit SpaceDocument</h1>
+
+    {{ include('space_document/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_space_document_index') }}">back to list</a>
+
+    {{ include('space_document/_delete_form.html.twig') }}
+{% endblock %}
